@@ -1,0 +1,139 @@
+.Logoo{
+	width: 100px;
+	margin-left: 20px;
+}
+
+header{
+	top: 0;
+	width: 100%;
+	height: 80px;
+	background: white;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	z-index: 99;
+	position: fixed;
+	box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.1);
+}
+
+header ul{
+	margin-right: 50px;
+}
+
+header ul li {
+	display: inline-block;
+	text-decoration: none;
+}
+
+.text-menu{
+	color :black;
+	padding: 0 15px;
+	top: 0;
+}
+
+.text-menu:hover {
+	opacity: 0.5;
+}
+
+header .menu-square, .close{
+	cursor: pointer;
+	font-weight: bold;
+	padding: 10px 20px;
+	margin-right: 20px;
+	color: black;
+	text-transform: uppercase;
+	display: none;
+}
+
+header .close{
+	position: absolute;
+	top: 10px;
+	right: 0;
+}
+
+.Search-bar {
+
+	margin-left: 20px;
+	height: 30px;
+	width: 50vh;
+	border-width: 0px;
+	background: #f3f3f3;
+	padding-left: 10px;
+
+}
+
+
+@media (max-width: 1045px){
+	header {
+		height: 150px;
+		width: 100%;
+
+	}
+	.Logoo {
+		margin-left:20px;
+	}
+
+
+}
+
+
+@media (max-width: 750px){
+	header {
+		height: 150px;
+		width: 100%;
+
+	}
+	.Logoo {
+		margin-left:20px;
+	}
+
+
+}
+
+@media (max-width: 625px){
+	header {
+		height: 150px;
+		width: 100%;
+
+	}
+	.Logoo {
+		margin-left:20px;
+	}	
+
+	.Search-bar{
+		width: 200px;
+	}
+
+
+	header ul li{
+		margin-right: 15px;
+	}
+
+
+}
+
+.login-square{
+	background: #f3f3f3;
+	padding :7px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-weight: bold;
+	height: 32px;
+}
+
+.button-cari{
+	padding: 7px;
+	border-width: 0;
+	background: black;
+	height: 32px;
+	width: 60px;
+	color: white;
+
+}
+
+.button-cari:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
