@@ -1,18 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './style.css';
+import {Link} from 'react-router-dom'
+import {DataContext} from '../Context'
 
-function Beranda() {
-  return (
-    <div className="Beranda">
-    	<div className="Banner-area">
-    	</div>
-    	<div className="Content-area">
 
-    	<p>search card</p>
+export class Beranda extends Component {
+   static contextType = DataContext;
 
-    	</div>
-    </div>
-  );
+    render() {
+        const {products,addCart} = this.context;
+        return (
+        <div className="container">
+            <div className="Banner-area"></div>
+                
+        </div>
+        )
+    }
 }
 
 export default Beranda;
