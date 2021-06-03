@@ -1,20 +1,36 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Product , DetailProduct , Checkout} from "../../pages";
+import {Home , Product , DetailProduct , Checkout} from "../../pages";
+import styled from "styled-components";
 
 const Routes = () => {
+    const Container = styled.div`
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        box-sizing: border-box;
+    `;
+
     return (
-        
         <Router>
             <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
                 <Route exact path="/products">
-                    <Product />
+                    <Container>
+                        <Product />
+                    </Container>
                 </Route>
                 <Route exact path="/detail-product/:param">
-                    <DetailProduct />
+                    <Container>
+                        <DetailProduct />
+                    </Container>
                 </Route>
                 <Route exact path="/checkout">
-                    <Checkout />
+                    <Container>
+                        <Checkout />
+                    </Container>
                 </Route>
             </Switch>
         </Router>

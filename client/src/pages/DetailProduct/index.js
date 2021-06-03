@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState , useEffect} from 'react'
 import Carousel from 'react-elastic-carousel'
 import {useParams} from "react-router-dom";
+import styled from "styled-components";
 
 const DetailProduct = () => {
 
@@ -12,6 +13,17 @@ const DetailProduct = () => {
   //   {id: 4, title: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg'},
   //   {id: 5, title: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg'}
   // ]
+
+  const Button = styled.button`
+    background: palevioletred;
+    color: white;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: right;
+`;
 
   let {param} = useParams();
 
@@ -27,7 +39,7 @@ const DetailProduct = () => {
   return (
     <div>
       <h1 style={{
-        margin: '100px 0px 50px 0px',
+        margin: '50px 0px 50px 0px',
         boxSizing: 'border-box',
       }}>{data.title}</h1>
 
@@ -42,8 +54,11 @@ const DetailProduct = () => {
       </Carousel> */}
 
       <Carousel>
-        <img src={data.url} key={data.albumId} />
+        <img src={data.url} key={data.albumId} style={{width: '300px' , height: '300px'}} />
       </Carousel>
+
+      <Button>Add to Cart</Button>
+      
 
     </div>
   )

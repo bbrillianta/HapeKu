@@ -1,35 +1,32 @@
 import React from 'react'
-// import {useHistory} from 'react-router-dom';
-import {BrowserRouter as Router , Link} from "react-router-dom";
+import styled from "styled-components";
 
 const Navbar = () => {
-    // const history = useHistory();
+    const Container = styled.div`
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        box-sizing: border-box;
+    `;
+
+    const Anchor = styled.a`
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 14px;
+    `
+
     return (
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/products" class="nav-link">Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="topnav" style={{overflow: 'hidden', backgroundColor: '#333'}}>
+            <Container style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Anchor href="/" class="nav-brand"><h2>HapeKu</h2></Anchor>
+                <div class="account">
+                    <Anchor href="/login"><span>Login</span></Anchor>
+                    <Anchor href="/register"><span>Register</span></Anchor>
                 </div>
-            </nav>
+            </Container>
         </div>
     )
 }
