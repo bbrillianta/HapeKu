@@ -5,31 +5,51 @@ module.exports = class CartService {
         this.#User = User;
     }
 
-    async addToCart(body) {
+    async addProduct(body) {
         const { userId, productId, quantity } = body;
         try {
-            const updatedCart = await this.#User.findByIdAndUpdate(
+            const addedProduct = await this.#User.findByIdAndUpdate(
                 userId, 
                 { $push: { cartItems: { product: productId, quantity } } }, 
                 { new: true }
             );
 
-            return updatedCart;
+            return addedProduct;
         } catch(e) {
             throw e;
         }
     }
 
-    async removeFromCart(body) {
-        const { userId, productId } = body;
+    async updateItem(body) {
+        let { itemId, ...updatedDoc } = { ...body };
+
+        itemId = body.itemId;
+
+        const updatedItem = await this.#User.findOneAndUpdate(
+            { 'cartItems._id': itemId }, 
+            { 
+                $set: {
+                    'cartItems.$.quantity': updatedDoc.quantity,
+                    'cartItems.$.product': updatedDoc.product,
+                    updated_at: new Date()
+                }
+            }, 
+            { new: true }
+        );
+
+        return updatedItem;
+    }
+
+    async removeItem(body) {
+        const { userId, itemId } = body;
         try {
-            const updatedCart = await this.#User.findByIdAndUpdate(
+            const removedItem = await this.#User.findByIdAndUpdate(
                 userId, 
-                { $pull: { cartItems: { product: productId } } }, 
+                { $pull: { cartItems: { _id: itemId } } }, 
                 { new: true }
             );
 
-            return updatedCart;
+            return removedItem;
         } catch(e) {
             throw e;
         }

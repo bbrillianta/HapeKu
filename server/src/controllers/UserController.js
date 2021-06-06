@@ -5,15 +5,21 @@ module.exports = class UserController {
         this.#cartService = cartService;
     }
 
-    async addToCart(req, res, next) {
-        const updatedCart = await this.#cartService.addToCart(req.body);
+    async addProductToCart(req, res, next) {
+        const addedProduct = await this.#cartService.addProduct(req.body);
 
-        res.json(updatedCart);
+        res.json(addedProduct);
     }
 
-    async removeFromCart(req, res, next) {
-        const updatedCart = await this.#cartService.removeFromCart(req.body);
+    async updateItemInCart(req, res, next) {
+        const updatedItem = await this.#cartService.updateItem(req.body);
 
-        res.json(updatedCart);
+        res.json(updatedItem);
+    }
+
+    async removeItemFromCart(req, res, next) {
+        const removedItem = await this.#cartService.removeItem(req.body);
+
+        res.json(removedItem);
     }
 }
