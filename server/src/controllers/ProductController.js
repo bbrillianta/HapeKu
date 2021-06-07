@@ -18,13 +18,13 @@ module.exports = class ProductController {
     }
 
     async create(req, res, next) {
-        const newProduct = await this.#productService.createNewProduct(req.body);
+        const newProduct = await this.#productService.createNewProduct(req.body, req.files);
 
         res.json(newProduct);
     }
 
     async update(req, res, next) {
-        const updatedProduct = await this.#productService.updateOneProduct(req.body);
+        const updatedProduct = await this.#productService.updateOneProduct(req.body, req.files);
 
         res.json(updatedProduct);
     }

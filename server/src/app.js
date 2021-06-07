@@ -8,8 +8,8 @@ require('./startups/cors')(app);
 require('./startups/mongoose')();
 
 require('./routes/auth')(app);
-require('./routes/product')(app);
 require('./routes/user')(app);
+require('./routes/product')(app);
 
 module.exports = app;
 

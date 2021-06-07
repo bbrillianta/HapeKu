@@ -6,8 +6,8 @@ const schema = new Schema({
     ...baseSchema,
     name: String,
     description: String,
-    images: [String],
-    thumbnail: String,
+    images: [{ path: String, mimeType: String }],
+    thumbnail: { path: String, mimeType: String },
     price: Number,
     quantity: { type: Number, default: 0 }
 });

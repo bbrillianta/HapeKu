@@ -10,7 +10,8 @@ const userController = new UserController(cartService);
 module.exports = (app) => {
     app.use('/user', router);
 
-    router.post('/cart/add', async (req, res, next) => await userController.addToCart(req, res, next));
-
-    router.delete('/cart/remove', async (req, res, next) => await userController.removeFromCart(req, res, next));
+    router.route('/cart')
+        .post(async (req, res, next) => await userController.addProductToCart(req, res, next))
+        .put(async (req, res, next) => await userController.updateItemInCart(req, res, next))
+        .delete(async (req, res, next) => await userController.removeItemFromCart(req, res, next));
 }
