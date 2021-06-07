@@ -16,12 +16,14 @@ const Product = () => {
 
     const CardWrapper = styled.div`
         display: flex;
+        flex: 1;
         flex-wrap: wrap;
         width: 100%;
         justify-content: space-evenly;
         box-sizing: border-box;
         flex-direction: row;
-        @media (max-width: 450px) {
+        overflow: auto;
+        @media (max-width: 700px) {
             flex-direction: column;
         }
     `;

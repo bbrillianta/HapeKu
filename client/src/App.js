@@ -1,4 +1,5 @@
 import React from 'react'
+// import AdminPage from './pages/AdminPage'
 import Navbar from './components/Navbar';
 import {Routes} from "./config";
 
@@ -7,8 +8,10 @@ const App = () => {
     <div>
       <Navbar />
       <Routes></Routes>   
-    </div>
     
+      {/* bagian adminpage */}
+      {/* <AdminPage /> */}
+    </div>
 
   )
 }

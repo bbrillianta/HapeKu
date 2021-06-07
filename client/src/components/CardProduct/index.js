@@ -17,26 +17,30 @@ const CardProduct = ({data}) => {
 
     const Card = styled.div`
         width: 20%;
+        max-height: 800px;
         margin: 10px;
         box-sizing: border-box;
         border-radius: 10px;
         box-shadow: 0px 0px 10px lightgray;
         padding: 0px 0px 10px 0px;
         cursor: pointer;
-        @media (max-width: 450px) {
+        @media (max-width: 700px) {
             width: 100%;
         }
     `;
 
     const CardInfo = styled.div`
         height: 40%;
-        padding: 0 20px;
+        padding: 10px 20px;
         text-align: left;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         font-size: 1.2em;
+        @media (max-width: 700px) {
+            justify-content: space-evenly;
+        }
     `;
 
     const Button = styled.button`
@@ -55,7 +59,7 @@ const CardProduct = ({data}) => {
     }
 
     return (
-        <Card key={data.id}>  
+        <Card key={data.id} onClick={() => history.push(`/detail-product/${data.id}`)}>  
             <img 
                 style={{
                     width: '100%',
@@ -69,7 +73,7 @@ const CardProduct = ({data}) => {
                 <p style={{fontWeight: 'bold'}}>{data.first_name} {data.id}</p>
                 <p style={styles.email(matches)}>{data.email}</p>
                 <Button cart onClick={addCart}>Add to Cart</Button>
-                <Button onClick={() => history.push(`/detail-product/${data.id}`)}>Detail Product</Button>
+                {/* <Button onClick={() => history.push(`/detail-product/${data.id}`)}>Detail Product</Button> */}
             </CardInfo>
         </Card>
     )
