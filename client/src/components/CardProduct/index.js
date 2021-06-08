@@ -5,15 +5,7 @@ import Checkout from '../../pages/Checkout';
 
 const CardProduct = ({data}) => {
     const mediaMatch = window.matchMedia('(max-width: 450px)');
-    const [matches, setMatches] = useState(mediaMatch.matches);
     const history = useHistory();
-
-    // untuk atur @media
-    useEffect(() => {
-        const handler = e => setMatches(e.matches);
-        mediaMatch.addListener(handler);
-        return () => mediaMatch.removeListener(handler);
-    })
 
     const Card = styled.div`
         width: 20%;
@@ -25,7 +17,8 @@ const CardProduct = ({data}) => {
         padding: 0px 0px 10px 0px;
         cursor: pointer;
         @media (max-width: 700px) {
-            width: 100%;
+            margin: 15px auto;
+            width: 90%;
         }
     `;
 
@@ -43,23 +36,15 @@ const CardProduct = ({data}) => {
         }
     `;
 
-    const Button = styled.button`
-        outline: none;
-        border: none;
-        padding: 5px;
-        box-sizing: border-box;
-        cursor: pointer;
-        background-color: ${(props) => props.cart ? 'transparent' : ''};
-        color: ${(props) => props.cart ? '#d30000' : ''};
-        border: 2px solid ${(props) => props.cart ? '#d30000' : ''};
-    `
-
-    const addCart = () => {
-        localStorage.setItem('productCart' , JSON.stringify(data));
-    }
+    const convertToRupiah = (angka) => {
+        let rupiah = '';		
+        let angkarev = angka.toString().split('').reverse().join('');
+        for(let i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+        return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
+    } 
 
     return (
-        <Card key={data.id} onClick={() => history.push(`/detail-product/${data.id}`)}>  
+        <Card key={data._id} onClick={() => history.push(`/detail-product/${data._id}`)}>  
             <img 
                 style={{
                     width: '100%',
@@ -67,25 +52,15 @@ const CardProduct = ({data}) => {
                     height: '60%',
                     borderRadius: '10px',
                 }}
-                src={data.avatar}
+                src={`http://localhost:3001/${data.thumbnail.path}`}
             />
             <CardInfo>
-                <p style={{fontWeight: 'bold'}}>{data.first_name} {data.id}</p>
-                <p style={styles.email(matches)}>{data.email}</p>
-                <Button cart onClick={addCart}>Add to Cart</Button>
-                {/* <Button onClick={() => history.push(`/detail-product/${data.id}`)}>Detail Product</Button> */}
+                <p style={{fontWeight: 'bold'}}>{data.name} </p>
+                <p style={{fontSize: '16px' , color: '#d30000'}}>{convertToRupiah(data.price)}</p>
+                <p style={{fontSize: '14px' , color: '#d30000'}}>Stok : {data.quantity}</p>
             </CardInfo>
         </Card>
     )
-}
-
-const styles = {
-    email: isResize => ({
-        width: isResize ? '250px' : '100%',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        fontSize: '14px',
-    })
 }
 
 export default CardProduct

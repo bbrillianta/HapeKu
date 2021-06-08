@@ -6,11 +6,10 @@ import CardProduct from '../../components/CardProduct';
 const Product = () => {
     const [datas , setData] = useState([]);
 
-    // percobaan get data
     useEffect(() => {
-        axios.get('https://reqres.in/api/users?page=1')
+        axios.get('http://localhost:3001/product')
         .then((response) => {
-            setData(response.data.data);
+            setData(response.data);
         })
     },[]);
 
