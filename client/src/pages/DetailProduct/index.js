@@ -16,7 +16,7 @@ const DetailProduct = () => {
   `;
 
   const ImageContainer = styled.div`
-    width: 50%;
+    width: 60%;
     height: 500px;
     overflow: auto;
     @media (max-width: 700px) {
@@ -25,7 +25,7 @@ const DetailProduct = () => {
   `;
 
   const DetailContainer = styled.div`
-    width: 50%; 
+    width: 40%; 
     text-align: left; 
     padding: 10px 20px; 
     box-sizing: border-box;

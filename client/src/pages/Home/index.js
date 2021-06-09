@@ -50,18 +50,29 @@ const Home = () => {
     `
 
     const [dataProduct , setDataProduct] = useState([]);
+    const [loading , setLoading] = useState(true);
+    let count = 0;
 
     useEffect(() => {
-        axios.get('https://reqres.in/api/users?page=1')
+        axios.get('http://localhost:3001/product')
         .then((response) => {
-            let array = response.data.data.filter((data) => {
-                return data.id <= 4;
+            let array = [];
+            response.data.filter((data) => {
+                if (count < 4) {
+                    array.push(data);
+                    count += 1;
+                }
             })
             setDataProduct(array);
+            setLoading(false);
         })
     } , []);
 
     const history = useHistory();
+
+    if (loading) {
+        return <div></div>
+    }
 
     return (
         <div>
