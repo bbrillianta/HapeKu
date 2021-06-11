@@ -7,7 +7,7 @@ const ProductCards = ({products , handleChange}) => {
         width: 100%;
         border-radius: 10px;
         box-sizing: border-box;
-        margin: 20px 0px;
+        margin: 0px 0px 20px 0px;
         padding: 7px;
         box-shadow: 0px 0px 10px lightgray;
     `
