@@ -31,6 +31,7 @@ const CardProduct = ({data}) => {
         flex-direction: column;
         justify-content: space-evenly;
         font-size: 1.2em;
+        overflow: auto;
         @media (max-width: 700px) {
             justify-content: space-evenly;
         }

@@ -1,16 +1,33 @@
 import React, {useState , useEffect} from 'react'
 import {useHistory} from "react-router-dom"
+import Swal from "sweetalert2";
+import axios from "axios";
 
-const Login = (props) => {
+const Login = () => {
     const history = useHistory();
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [confirm, setConfirm] = useState(null);
-    const [pesan, setPesan] = useState(null);
 
     function submitLogin(e){
         e.preventDefault();
-        console.log("Berhasil login")
+        axios.post('http://localhost:3001/auth/login' , {
+            email   : email,
+            password : password,
+        })
+        .then((user) => {
+            if (user.status === 200) {
+                localStorage.setItem('dataUser' , JSON.stringify(user.data));
+                localStorage.setItem("isLogged" , true);
+                window.location.href = '/';
+            } 
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email / Password salah!'
+            })
+        })
     }
 
     return (
@@ -19,11 +36,11 @@ const Login = (props) => {
             <form style={styles.formLogin} onSubmit={submitLogin}>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Email</label>
-                    <input type="email" placeholder="Enter Email" style={styles.input}/>
+                    <input type="email" placeholder="Enter Email" style={styles.input} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Password</label>
-                    <input type="password" placeholder="Enter Password" style={styles.input}/>
+                    <input type="password" placeholder="Enter Password" style={styles.input}  onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button style={styles.button} type="submit">LOGIN</button>
             </form>

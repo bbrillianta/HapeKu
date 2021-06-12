@@ -1,17 +1,44 @@
-import React, {useState , useEffect} from 'react'
+import axios from 'axios';
+import React, {useState} from 'react'
 import {useHistory} from "react-router-dom"
+import Swal from "sweetalert2";
 
-const Register = (props) => {
+const Register = () => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirm, setConfirm] = useState(null);
-    const [pesan, setPesan] = useState(null);
 
     function submitRegister(e){
         e.preventDefault();
-        console.log("Berhasil register")
+        if (password === confirm) {
+            axios.post('http://localhost:3001/auth/register', {
+                email : email,
+                password : password,
+                username : username,
+            })
+            .then((user) => {
+                if (user.status === 200) {
+                    localStorage.setItem('dataUser' , JSON.stringify(user.data));
+                    localStorage.setItem("isLogged" , true);
+                    window.location.href = '/';
+                }
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tidak bisa register'
+                })
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password dan Verify Password tidak sama!'
+            })
+        }
     }
 
     return (
@@ -20,19 +47,19 @@ const Register = (props) => {
             <form style={styles.formRegister} onSubmit={submitRegister}>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Username</label>
-                    <input type="text" placeholder="Enter Username" style={styles.input}/>
+                    <input type="text" placeholder="Enter Username" style={styles.input} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Email</label>
-                    <input type="email" placeholder="Enter Email" style={styles.input}/>
+                    <input type="email" placeholder="Enter Email" style={styles.input} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Password</label>
-                    <input type="password" placeholder="Enter Password" style={styles.input}/>
+                    <input type="password" placeholder="Enter Password" style={styles.input} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Verify Password</label>
-                    <input type="password" placeholder="Enter Pasword" style={styles.input}/>
+                    <input type="password" placeholder="Enter Pasword" style={styles.input} onChange={(e) => setConfirm(e.target.value)} />
                 </div>
                 <button style={styles.button} type="submit">REGISTER</button>
             </form>
