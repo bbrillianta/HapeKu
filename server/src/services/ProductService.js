@@ -1,8 +1,9 @@
 const unlink = require('fs').unlink;
+const getImageMeta = require('../helpers/getImageMeta');
 
 module.exports = class ProductService {
     #Product;
-
+    
     constructor(Product) {
         this.#Product = Product;
     }
@@ -28,8 +29,8 @@ module.exports = class ProductService {
     }
 
     async createNewProduct(body, files) {
-        const images = files.images.map(image => this.#getImageMeta(image));
-        const thumbnail = this.#getImageMeta(files.thumbnail[0]);
+        const images = files.images.map(image => getImageMeta(image));
+        const thumbnail = getImageMeta(files.thumbnail[0]);
         const newDoc = {...body, thumbnail, images };
 
         try {
@@ -47,12 +48,12 @@ module.exports = class ProductService {
         let updatedDoc = { ...body, updated_at: new Date() };
 
         if(files.images) {
-            const images = files.images.map(image => this.#getImageMeta(image));
+            const images = files.images.map(image => getImageMeta(image));
             updatedDoc = {...updatedDoc, images };
         }
 
         if(files.thumbnail) {
-            const thumbnail = this.#getImageMeta(files.thumbnail[0]);
+            const thumbnail = getImageMeta(files.thumbnail[0]);
             updatedDoc = {...updatedDoc, thumbnail };
         }
         
@@ -89,13 +90,6 @@ module.exports = class ProductService {
             return deletedProduct;
         } catch(e) {
             throw e;
-        }
-    }
-
-    #getImageMeta(image) {
-        return { 
-            path: image.path.replace(/\\/g, '/'), 
-            mimeType: image.mimetype 
         }
     }
 }

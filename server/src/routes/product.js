@@ -1,13 +1,13 @@
 const express = require('express');
+const upload = require('../startups/multer').products;
+
 const Product = require('../models/Product');
 const ProductService = require('../services/ProductService');
 const ProductController = require('../controllers/ProductController');
-const multer = require('multer');
 
 const router = express.Router();
 const productService = new ProductService(Product);
 const productController = new ProductController(productService);
-const upload = multer({ dest: 'public/images/products' });
 
 module.exports = (app) => {
     app.use('/product', router);

@@ -12,12 +12,31 @@ module.exports = class CartService {
                 userId, 
                 { $push: { cartItems: { product: productId, quantity } } }, 
                 { new: true }
-            );
+            )
+            .populate('cartItems.product');
 
             return addedProduct;
         } catch(e) {
             throw e;
         }
+    }
+
+    async getAllItem(query) {
+        const { userId } = query;
+
+        const user = await this.#User.findById(userId).populate('cartItems.product');
+
+        return user.cartItems;
+    }
+
+    async getAllCheckoutItems(query) {
+        const { userId } = query;
+        
+        const foundUser = await this.#User.findById(userId).populate('cartItems.product');
+
+        const checkoutItems = foundUser.cartItems.filter((item) => item.checkout);
+
+        return checkoutItems;
     }
 
     async updateItem(body) {
@@ -31,11 +50,13 @@ module.exports = class CartService {
                 $set: {
                     'cartItems.$.quantity': updatedDoc.quantity,
                     'cartItems.$.product': updatedDoc.product,
+                    'cartItems.$.checkout': updatedDoc.checkout,
                     updated_at: new Date()
                 }
             }, 
             { new: true }
-        );
+        )
+        .populate('cartItems.product');
 
         return updatedItem;
     }
