@@ -68,7 +68,8 @@ module.exports = class CartService {
                 userId, 
                 { $pull: { cartItems: { _id: itemId } } }, 
                 { new: true }
-            );
+            )
+            .populate('cartItems.product');
 
             return removedItem;
         } catch(e) {

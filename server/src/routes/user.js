@@ -20,7 +20,6 @@ module.exports = (app) => {
         .post(async (req, res, next) => await userController.createCartItem(req, res, next))
         .put(async (req, res, next) => await userController.updateCartItem(req, res, next))
         .delete(async (req, res, next) => await userController.deleteCartItem(req, res, next));
-    
 
     router.route('/checkout')
         .get(async (req, res, next) => await userController.indexCheckoutItems(req, res, next))
