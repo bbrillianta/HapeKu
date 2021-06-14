@@ -13,7 +13,7 @@ const schema = new Schema({
         type: [{ 
             product: { type: Schema.Types.ObjectId, ref: 'Product' },
             quantity: { type: Number, default: 1, min: 1 },
-            checkout: { type: Boolean, default: false }
+            checkout: { type: Boolean, default: true }
         }],
         default: []
     },
