@@ -5,5 +5,6 @@ import DetailProduct from "./DetailProduct";
 import Checkout from "./Checkout";
 import Register from "./Register";
 import Login from "./Login";
+import Verifikasi from "./Verifikasi";
 
-export {Register , AdminPage , Home , Product , DetailProduct , Checkout , Login};
+export {Register , AdminPage , Home , Product , DetailProduct , Checkout , Login , Verifikasi};
