@@ -1,23 +1,19 @@
-import React  from 'react';
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
-import Section from './components/Section';
-import Navbar from './components/Navbar/Navbar';
-import {DataProvider} from './components/Context';
-import './App.css';
+import React from 'react'
+import Navbar from './components/Navbar';
+import {Routes} from "./config";
+import "./App.css"
 
-function App() {
+const App = () => { 
   return (
-    <div className="App">
-       <DataProvider>
-        <div className="app">
-          <Router>
-            <Navbar />
-            <Section />
-          </Router>
-        </div>
-      </DataProvider>
+    <div>
+      <Navbar />
+      <Routes></Routes>   
+    
+      {/* bagian adminpage */}
+      {/* <AdminPage /> */}
     </div>
-  );
+
+  )
 }
 
-export default App;
+export default App
