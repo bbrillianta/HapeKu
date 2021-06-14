@@ -28,7 +28,7 @@ const DetailPayment = ({total}) => {
         return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
     } 
 
-    const totalBelanja = total();
+    // const totalBelanja = total();
 
     return (
         <div>
@@ -37,7 +37,8 @@ const DetailPayment = ({total}) => {
                 <hr />
                 <Product>
                     <span>Total Belanja</span>
-                    <span>{convertToRupiah(totalBelanja)}</span>
+                    {/* <span>{convertToRupiah(totalBelanja)}</span> */}
+                    <span>200000</span>
                 </Product>
             </CardPayment>
 

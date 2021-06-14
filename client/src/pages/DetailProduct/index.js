@@ -3,6 +3,7 @@ import React, {useState , useEffect} from 'react'
 import {useHistory , useParams} from "react-router-dom";
 import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
+import Swal from 'sweetalert2';
 
 const DetailProduct = () => {
 
@@ -86,6 +87,29 @@ const DetailProduct = () => {
     })
   }
 
+  const addCart = (id) => {
+    let userId = JSON.parse(localStorage.getItem("dataUser"))
+    axios.post('http://localhost:3001/user/cart/', {
+      userId: userId._id,
+      productId: id,
+      quantity: 1
+    })
+    .then((response) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Berhasil menambah item ke cart'
+      })
+    })
+    .catch(() => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Gagal menambah item ke cart'
+      })
+    })
+  }
+
   return (
     <div>
        <h1 style={{
@@ -105,7 +129,7 @@ const DetailProduct = () => {
             <li>Price : {convertToRupiah(data.price)}</li>
           </ul>
 
-          <Button cart>Add to Cart</Button>
+          <Button cart onClick={() => addCart(data._id)}>Add to Cart</Button>
           <Button onClick={() => history.push('/products')}>Back to Catalog</Button>
         </DetailContainer>
       </ContentContainer>
