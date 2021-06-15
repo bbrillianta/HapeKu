@@ -73,7 +73,7 @@ module.exports = class PaymentService {
     async getAllUnpaid(query) {
         const { userId } = query;
 
-        const foundUser = await this.#User.findById(userId);
+        const foundUser = await this.#User.findById(userId).populate('unpaidItems.products.product');
 
         return foundUser.unpaidItems;
     }
@@ -81,9 +81,9 @@ module.exports = class PaymentService {
     async getAllPaid(query) {
         const { userId } = query;
 
-        const foundUser = await this.#User.findById(userId).populate('transactions');
+        const foundUser = await this.#Transaction.find({ user: userId }).populate('products.product');
 
-        return foundUser.transactions;
+        return foundUser;
     }
 
     async cancelOrder(body) {

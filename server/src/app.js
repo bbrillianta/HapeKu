@@ -10,6 +10,7 @@ require('./startups/mongoose')();
 require('./routes/auth')(app);
 require('./routes/user')(app);
 require('./routes/product')(app);
+require('./routes/admin')(app);
 
 module.exports = app;
 
