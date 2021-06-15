@@ -88,26 +88,38 @@ const DetailProduct = () => {
   }
 
   const addCart = (id) => {
+    let isLogged = JSON.parse(localStorage.getItem("isLogged"))
     let userId = JSON.parse(localStorage.getItem("dataUser"))
-    axios.post('http://localhost:3001/user/cart/', {
-      userId: userId._id,
-      productId: id,
-      quantity: 1
-    })
-    .then((response) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: 'Berhasil menambah item ke cart'
+    if (isLogged == true) {
+      axios.post('http://localhost:3001/user/cart/', {
+        userId: userId._id,
+        productId: id,
+        quantity: 1
       })
-    })
-    .catch(() => {
+      .then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil',
+          text: 'Berhasil menambah item ke cart'
+        })
+        localStorage.setItem("dataUser" , JSON.stringify(response.data))
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Gagal menambah item ke cart'
+        })
+      })
+    } else {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Gagal menambah item ke cart'
+        text: 'Anda belum Login / Register'
+      }).then(() => {
+        window.location.href = "/login"
       })
-    })
+    }
   }
 
   return (

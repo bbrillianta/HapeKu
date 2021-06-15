@@ -56,16 +56,6 @@ const AdminPage = () => {
 
     return (
         <div>
-            {/* <div class="topnav" style={{overflow: 'hidden', backgroundColor: '#333'}}>
-                <Container style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <Anchor href="/" class="nav-brand"><h2>HapeKu</h2></Anchor>
-                    <div class="account">
-                        <Anchor href="/login"><span>CRUD Data</span></Anchor>
-                        <Anchor href="/register"><span>Pengiriman</span></Anchor>
-                    </div>
-                </Container>
-            </div> */}
-
             <div style={styles.container}>
                 <div style={styles.content}>
                     <form style={styles.form} onSubmit={sendData} encType="multipart/form-data">

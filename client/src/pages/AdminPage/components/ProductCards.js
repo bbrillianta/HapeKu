@@ -38,16 +38,8 @@ const ProductCards = ({data}) => {
         return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
     } 
 
-    // const deleteData = (id) => {
-    //     const cart = products.filter((product) => {
-    //         return product._id != id;
-    //     })
-    //     handleChange(cart);
-    // }
-
     return (
         <div>
-            {console.log(data)}
             <CardProduct key={data._id}>
                 <div style={{display: 'flex'}}>
                     <img 
