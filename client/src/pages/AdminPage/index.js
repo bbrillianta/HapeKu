@@ -39,12 +39,6 @@ const AdminPage = () => {
 
     const sendData = (e) => {
         e.preventDefault();
-        // console.log(nameProduct)
-        // console.log(description)
-        // console.log(price)
-        // console.log(quantity)
-        // console.log(thumbnail)
-        // console.log(images)
     }
 
     return (
