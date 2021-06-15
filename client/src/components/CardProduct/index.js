@@ -1,7 +1,6 @@
 import React, { useState , useEffect } from 'react'
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
-import Checkout from '../../pages/Checkout';
 
 const CardProduct = ({data}) => {
     const mediaMatch = window.matchMedia('(max-width: 450px)');

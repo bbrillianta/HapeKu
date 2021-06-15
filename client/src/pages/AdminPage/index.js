@@ -32,7 +32,6 @@ const AdminPage = () => {
     useEffect(() => {
         axios.get('http://localhost:3001/product')
         .then((response) => {
-            // console.log(response.data)
             setDataProduct(response.data)
             setLoading(false)
         })
@@ -50,19 +49,9 @@ const AdminPage = () => {
 
     return (
         <div>
-            {/* <div class="topnav" style={{overflow: 'hidden', backgroundColor: '#333'}}>
-                <Container style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <Anchor href="/" class="nav-brand"><h2>HapeKu</h2></Anchor>
-                    <div class="account">
-                        <Anchor href="/login"><span>CRUD Data</span></Anchor>
-                        <Anchor href="/register"><span>Pengiriman</span></Anchor>
-                    </div>
-                </Container>
-            </div> */}
-
             <div style={styles.container}>
                 <div style={styles.content}>
-                    <form style={styles.form} onSubmit={sendData}>
+                    <form style={styles.form} onSubmit={sendData} encType="multipart/form-data" >
                         <h2>Input Data Product</h2>
                         <input name="nama" type="text" placeholder="Nama Product" onChange={(e) => setNameProduct(e.target.value)}/>
                         <textarea name="deskripsi" rows="10" type="text" placeholder="Deskripsi Product" onChange={(e) => setDescription(e.target.value)}/>

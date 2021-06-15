@@ -10,6 +10,11 @@ const Login = () => {
 
     function submitLogin(e){
         e.preventDefault();
+
+        if (email === "admin@gmail.com" && password === "admin") {
+            window.location.href = "/adminpage"
+        }
+
         axios.post('http://localhost:3001/auth/login' , {
             email   : email,
             password : password,
@@ -36,11 +41,11 @@ const Login = () => {
             <form style={styles.formLogin} onSubmit={submitLogin}>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Email</label>
-                    <input type="email" placeholder="Enter Email" style={styles.input} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" placeholder="Enter Email" style={styles.input} onChange={(e) => setEmail(e.target.value)} autoComplete/>
                 </div>
                 <div style={{display: 'flex', flexDirection: 'column' , width: '100%'}}>
                     <label>Password</label>
-                    <input type="password" placeholder="Enter Password" style={styles.input}  onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder="Enter Password" style={styles.input}  onChange={(e) => setPassword(e.target.value)} autoComplete/>
                 </div>
                 <button style={styles.button} type="submit">LOGIN</button>
             </form>
