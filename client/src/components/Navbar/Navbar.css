@@ -1,0 +1,240 @@
+.Logoo{
+	width: 100px;
+	margin-left: 30px;
+	margin-right: 10px;
+}
+
+header{
+	top: 0;
+	width: 100%;
+	height: 80px;
+	background: white;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	z-index: 99;
+	position: fixed;
+	box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.1);
+}
+
+
+header ul li{
+	display: inline-block;
+	
+}
+
+header ul li a{
+	padding: 0 10px;
+	text-decoration: none;
+}
+
+.text-menu{
+	color :black;
+	padding: 0 10px;
+	top: 0;
+}
+
+.text-menu:hover {
+	opacity: 0.5;
+}
+
+.Search-bar {
+	height: 30px;
+	width: 40vw;
+	border-width: 0px;
+	background: #f3f3f3;
+	padding-left: 10px;
+}
+
+
+@media (max-width: 1060px){
+	header {
+		height: 120px;
+		width: 100%;
+	}
+
+	.Logoo {
+		position: absolute;
+		top: 0;
+		bottom :0;
+		margin-top:24px ;
+		margin-left: 36px;
+	}	
+
+	.nav-search{
+		position: absolute;
+		top: 0;
+		margin-left: 200px;
+		margin-top:20px ;
+
+	}
+
+	header ul{
+		position: absolute;
+		margin-top: 60px;
+		margin-left: 140px;
+	}
+
+	.nav-keranjang{
+		position: absolute;
+		left: 0;
+		margin-top: 5px;
+		margin-left: 470px;
+	}
+	.profil_1{
+		position: absolute;
+		margin-left: 550px;
+		margin-top: 45px;
+	}
+
+}
+@media (max-width: 600px){
+	header {
+		height: 170px;
+		width: 100%;
+	}
+
+	.Logoo {
+		position: absolute;
+		top: 0;
+		bottom :0;
+		margin-top:24px ;
+		margin-left: 64px;
+	}	
+
+	.nav-search{
+		position: absolute;
+		top: 0;
+		margin-left: 64px;
+		margin-top:65px ;
+
+	}
+
+	header ul{
+		position: absolute;
+		margin-top: 110px;
+		margin-left: 0px;
+	}
+
+	.nav-keranjang{
+		position: absolute;
+		left: 0;
+		margin-top: 30px;
+		margin-left: 325px;
+	}
+	.profil_1{
+		position: absolute;
+		margin-left: 390px;
+		margin-top: 90px;
+	}
+
+}
+
+@media (max-width: 450px){
+	header {
+		height: 200px;
+		width: 100%;
+	}
+
+	.Logoo {
+		position: absolute;
+		top: 0;
+		bottom :0;
+		margin-top:24px ;
+		margin-left: 64px;
+	}	
+
+	.nav-search{
+		position: absolute;
+		top: 0;
+		margin-left: 64px;
+		margin-top:65px ;
+
+	}
+
+	header ul{
+		position: absolute;
+		margin-top: 70px;
+		margin-left: 0px;
+	}
+
+	.nav-keranjang{
+		position: absolute;
+		left: 0;
+		margin-top: 140px;
+		margin-left: 64px;
+	}
+	.profil_1{
+		position: absolute;
+		margin-left: 110px;
+		margin-top: 140px;
+	}
+
+}
+
+
+.login-square{
+	background: #f3f3f3;
+	padding :7px;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 32px;
+	border-radius: 40px;
+
+}
+
+.button-cari{
+	padding: 7px;
+	border-width: 0;
+	background: grey;
+	height: 32px;
+	width: 60px;
+	color: white;
+
+}
+
+.button-cari img{
+	width: 10px;
+	color: white;
+}
+
+.button-cari:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.keranjang_1, .profil_1{
+	width: auto;
+	height: 25px;
+
+}
+.keranjang_1{
+	margin-top: 5px;
+}
+
+.profil_1{
+	margin-right: 30px;
+}
+
+
+.number{
+position: absolute;
+margin-left: 20px;
+background: #d30000;
+border-radius: 50%;
+padding: 1px 3px 1px ;
+font-size: 12px;
+color: white;
+}
+
+.nav-keranjang: hover{
+	opacity: 0.5;
+}
+
+
+.nav-keranjang: {
+	cursor: pointer;
+
+}
