@@ -12,6 +12,8 @@ const adminController = new AdminController(adminService);
 module.exports = (app) => {
     app.use('/admin', router);
 
+    router.get('/transaction', async (req, res, next) => await adminController.indexTransactions(req, res, next));
+
     router.put('/transaction/verify', async (req, res, next) => await adminController.editTransactionVerification(req, res, next));
 
     router.delete('/transaction/delete', async (req, res, next) => await adminController.deleteTransaction(req, res, next));
