@@ -27,6 +27,7 @@ const Verifikasi = () => {
                         <p> Perum Tanah bang permai blok A6 Kediri Tabanan Bali </p>
                         <br />
                         <p style={{opacity:'70%'}}> Total : 500.000</p>
+                        <p style={{opacity:'70%'}}> Kuantitas : 12</p>
                         <p style={{opacity:'70%'}}> Samsung,oppo,samsung,vivo,iphone </p>
                     </div>
                     <div className="card-opsi">
@@ -34,7 +35,7 @@ const Verifikasi = () => {
                         <OpsiButton className="opsi">✔</OpsiButton>
                     </div>
                 </div>
-                <div className="card">
+                 <div className="card">
                     <img className="img-card" src={buktii} alt="" />
                     <div className="card-body">
                         <p >08-09-2021</p>
@@ -42,6 +43,7 @@ const Verifikasi = () => {
                         <p> Perum Tanah bang permai blok A6 Kediri Tabanan Bali </p>
                         <br />
                         <p style={{opacity:'70%'}}> Total : 500.000</p>
+                        <p style={{opacity:'70%'}}> Kuantitas : 12</p>
                         <p style={{opacity:'70%'}}> Samsung,oppo,samsung,vivo,iphone </p>
                     </div>
                     <div className="card-opsi">
@@ -49,7 +51,7 @@ const Verifikasi = () => {
                         <OpsiButton className="opsi">✔</OpsiButton>
                     </div>
                 </div>
-                <div className="card">
+                 <div className="card">
                     <img className="img-card" src={buktii} alt="" />
                     <div className="card-body">
                         <p >08-09-2021</p>
@@ -57,6 +59,7 @@ const Verifikasi = () => {
                         <p> Perum Tanah bang permai blok A6 Kediri Tabanan Bali </p>
                         <br />
                         <p style={{opacity:'70%'}}> Total : 500.000</p>
+                        <p style={{opacity:'70%'}}> Kuantitas : 12</p>
                         <p style={{opacity:'70%'}}> Samsung,oppo,samsung,vivo,iphone </p>
                     </div>
                     <div className="card-opsi">
@@ -64,6 +67,7 @@ const Verifikasi = () => {
                         <OpsiButton className="opsi">✔</OpsiButton>
                     </div>
                 </div>
+              
             </div>
         </div>
     )
