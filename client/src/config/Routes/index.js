@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Register , AdminPage , Home , Product , DetailProduct , Cart, Login , Verifikasi , Checkout} from "../../pages";
+import {Register , AdminPage , Home , Product , DetailProduct , Cart, Login , Verifikasi , Checkout , Orders} from "../../pages";
 import styled from "styled-components";
 
 const Routes = () => {
@@ -47,6 +47,11 @@ const Routes = () => {
                 <Route exact path="/checkout">
                     <Container>
                         <Checkout />
+                    </Container>
+                </Route>
+                <Route exact path="/orders">
+                    <Container>
+                        <Orders />
                     </Container>
                 </Route>
             </Switch>

@@ -36,9 +36,11 @@
     transform: rotate(360deg);
   }
 } */
+
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 * {
   margin: 0;
   padding: 0;
 }
+

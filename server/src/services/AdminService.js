@@ -7,6 +7,12 @@ module.exports = class AdminService {
         this.#Transaction = Transaction;
     }
 
+    async getAllTransactions() {
+        const transactions = await this.#Transaction.find({ 'payment.verified': false }).populate('products.product').populate('user');
+
+        return transactions;
+    }
+
     async verifyPayment(body) {
         const { transactionId, userId } = body;
 

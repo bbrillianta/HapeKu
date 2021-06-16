@@ -5,6 +5,12 @@ module.exports = class AdminController {
         this.#adminService = adminService;
     }
 
+    async indexTransactions(req, res, next) {
+        const transactions = await this.#adminService.getAllTransactions();
+
+        res.json(transactions);
+    }
+
     async editTransactionVerification(req, res, next) {
         const updatedTransaction = await this.#adminService.verifyPayment(req.body);
 
