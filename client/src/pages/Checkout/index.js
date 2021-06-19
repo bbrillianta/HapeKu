@@ -13,6 +13,7 @@ const Checkout = () => {
         border-radius: 3px;
         cursor: pointer;
         text-align: right;
+        border: none;
         @media (max-width: 700px) {
             margin: .5rem 0 .5rem 0;
         }
@@ -21,12 +22,19 @@ const Checkout = () => {
     const [checkout , setCheckout] = useState([]);
     const [loading , setLoading] = useState(true);
     const [address , setAddress] = useState("")
+    const [total , setTotal] = useState(0);
 
-    let user = JSON.parse(localStorage.getItem("dataUser"));
+    let idUser = JSON.parse(localStorage.getItem("idUser"))
     
+    // get data checkout from cart api
     useEffect(() => {
-        axios.get(`http://localhost:3001/user/checkout?userId=${user._id}`)
+        axios.get(`http://localhost:3001/user/cart?userId=${idUser}`)
         .then((response) => {
+            let totalTemp = 0;
+            response.data.map((item) => {
+                totalTemp += item.quantity * item.product.price
+            })
+            setTotal(totalTemp)
             setCheckout(response.data)
             setLoading(false)
         })
@@ -40,15 +48,15 @@ const Checkout = () => {
     }
 
     const makeOrder = () => {
-        if (address !== "") {
+        if (address !== "" && idUser !== "") {
             axios.post('http://localhost:3001/user/payment/unpaid' , {
-                userId: user._id,
+                userId: idUser,
                 address: address,
             })
             .then((response) => {
-                localStorage.setItem("dataUser" , JSON.stringify(response.data));
-                window.location.href = '/';
+                window.location.href = '/orders';
             })
+            .catch((error) => console.log(error))
         } else {
             swal.fire({
                 icon: 'error',
@@ -80,13 +88,19 @@ const Checkout = () => {
                             return (
                                 <div style={styles.cardProduct}>
                                     <img style={{width: '100px' , height: '100px'}} src={`http://localhost:3001/${data.product.thumbnail.path}`} alt="" />
-                                    <h3> {data.product.name}</h3>
-                                    <h3> {convertToRupiah(data.product.price)}</h3>
+                                    <div style={{textAlign: 'left', display: 'flex' , flexDirection: 'column' , height: '50px' , justifyContent: 'space-evenly'}}>
+                                        <h4> {data.product.name}</h4>
+                                        <h4 style={{color: 'salmon'}}> {convertToRupiah(data.product.price)} </h4>
+                                    </div>
+                                    <p>Quantity : {data.quantity}</p>
+                                    <h4> {convertToRupiah(data.product.price * data.quantity)}</h4>
                                 </div>
                             )
                         })
                     )
                 }
+                <br />
+                <h3>Total : {convertToRupiah(total)}</h3>
             </div>
             <Button onClick={makeOrder}>Make An Order</Button>
         </div>

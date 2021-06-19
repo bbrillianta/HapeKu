@@ -54,7 +54,6 @@ const ItemCard = ({item , handleDelete , changeTotal , setChangeTotal}) => {
             quantity: tambahan,
         })
         .then(response => {
-            localStorage.setItem("dataUser" , JSON.stringify(response.data))
             setQuantity(tambahan)
             if (changeTotal) {
                 setChangeTotal(false)
@@ -74,7 +73,6 @@ const ItemCard = ({item , handleDelete , changeTotal , setChangeTotal}) => {
                 quantity: kurangan,
             })
             .then(response => {
-                localStorage.setItem("dataUser" , JSON.stringify(response.data))
                 setQuantity(kurangan)
                 if (changeTotal) {
                     setChangeTotal(false)

@@ -1,23 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import DetailPayment from './components/DetailPayment';
 import CartItems from './components/CartItems';
+import axios from 'axios';
 
 const Cart = () => {
     const [total , setTotal] = useState(null);
     const [gantiTotal , setGantiTotal] = useState(true)
+    
+    let idUser = JSON.parse(localStorage.getItem("idUser"))
 
+    // perhitungan total pembelian
     useEffect(() => {
-        let user = JSON.parse(localStorage.getItem("dataUser"));
-        
-        if (user.cartItems.length !== 0) {
+        axios.get(`http://localhost:3001/user/cart?userId=${idUser}`)
+        .then((response) => {
             let total = 0;
-            user.cartItems.map((item) => {
+            response.data.map((item) => {
                 total += item.quantity * item.product.price
             })
             setTotal(total);
-        } else {
-            setTotal(0)
-        }
+        })
     } , [gantiTotal])
 
     return (
