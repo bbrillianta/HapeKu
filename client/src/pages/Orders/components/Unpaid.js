@@ -1,9 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import styled from 'styled-components';
 
 const Unpaid = () => {
+    const Button = styled.button`
+        background: palevioletred;
+        color: #fff;
+        font-size: 1em;
+        padding: 0.25em 1em;
+        border-radius: 3px;
+        cursor: pointer;
+        text-align: right;
+        border: none;
+        @media (max-width: 700px) {
+            margin: .5rem 0 .5rem 0;
+        }
+    `;
+
     const [unpaidItems , setUnpaid] = useState([]);
     const [loading , setLoading] = useState(true);
+    const [fotoBukti , setFotoBukti] = useState(null);
 
     let idUser = JSON.parse(localStorage.getItem("idUser"))
 
@@ -22,6 +38,12 @@ const Unpaid = () => {
         return 'Rp. '+rupiah.split('',rupiah.length-1).reverse().join('');
     }
 
+    const payOrder = (e) => {
+        e.preventDefault();
+        
+        // submit upload 
+    }
+
     return (
         <div>
             {
@@ -33,7 +55,7 @@ const Unpaid = () => {
                         <span>Belum ada pesanan</span>
                     ) : (
                         unpaidItems.map((data) => {
-                            let unpaidProduct = [...data.products];
+                            let unpaidProducts = [...data.products];
                             let total = 0;
                             return (
                                 <div style={styles.containerCard}>
@@ -43,7 +65,7 @@ const Unpaid = () => {
                                     </div>
     
                                     {
-                                        unpaidProduct.map((product) => {
+                                        unpaidProducts.map((product) => {
                                             total += product.product.price * product.quantity
                                             return (
                                                 <div style={styles.cardProduct}>
@@ -58,10 +80,13 @@ const Unpaid = () => {
                                             )
                                         })
                                     }
-                                    <div style={{display: 'flex' , justifyContent: 'space-between' , marginTop: '20px'}}>
-                                        <div>
-                                            <label>Upload foto bukti pembayaran : </label>
-                                            <input type="file" />
+                                    <div style={{display: 'flex' , justifyContent: 'space-between' , marginTop: '20px' , alignItems: 'center'}}>
+                                        <div style={{textAlign: 'left'}}>
+                                            <label>Upload bukti pembayaran : </label> <br />
+                                            <form onSubmit={payOrder} encType="multipart/form-data">
+                                                <input type="file" onChange={(e) => {setFotoBukti(e.target.files[0])}} />
+                                                <Button type="submit">Submit</Button>
+                                            </form>
                                         </div>
                                         <h4>Total : <span style={{color: 'palevioletred'}}>{convertToRupiah(total)}</span></h4>
                                     </div>
