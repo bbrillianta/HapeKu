@@ -18,7 +18,7 @@ const DetailProduct = () => {
 
   const ImageContainer = styled.div`
     width: 60%;
-    height: 500px;
+    height: 400px;
     overflow: auto;
     @media (max-width: 700px) {
       width: 100%;
