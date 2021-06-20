@@ -22,7 +22,7 @@ const Login = () => {
         .then((user) => {
             if (user.status === 200) {
                 localStorage.setItem("idUser" , JSON.stringify(user.data._id))
-                localStorage.setItem("userName" , JSON.stringify(user.data.username))
+                localStorage.setItem("userName" , user.data.username)
                 localStorage.setItem("isLogged" , true);
                 window.location.href = '/';
             } 
