@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import ItemCard from "./ItemCard";
 import swal from "sweetalert2";
 
 const CartItems = ({changeTotal , setChangeTotal}) => {
     const [cartItems , setCartItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading , setLoading] = useState(true);
 
-    // get user id from localstorage
-    let user = JSON.parse(localStorage.getItem("dataUser"));
+    // untuk get user id from localstorage
+    let idUser = JSON.parse(localStorage.getItem("idUser"));
+
+    // ambil data cart dari api cart
+    useEffect(() => {
+        axios.get(`http://localhost:3001/user/cart?userId=${idUser}`)
+        .then((response) => {
+            console.log(response.data);
+            setCartItems(response.data)
+            setLoading(false);
+        })
+    } , [])
 
     const deleteData = (id) => {
         axios.delete('http://localhost:3001/user/cart/' , {
             data: {
-                userId: user._id,
+                userId: idUser,
                 itemId: id,
             }
         })
@@ -23,7 +33,6 @@ const CartItems = ({changeTotal , setChangeTotal}) => {
                 title: 'Berhasil',
                 text: 'Product berhasil dihapus dari cart'
             })
-            localStorage.setItem("dataUser" , JSON.stringify(response.data));
             setCartItems(response.data.cartItems)
             setLoading(false);
             if (changeTotal) {
@@ -40,19 +49,23 @@ const CartItems = ({changeTotal , setChangeTotal}) => {
     return (
         <div>
             {
-                user.cartItems.length === 0 ? (
-                    <span>Cart masih kosong</span>
+                loading ? (
+                    <span>Loading ...</span>
                 ) : (
-                    user.cartItems.map((item) => {
-                        return (
-                            <ItemCard 
-                                item={item}
-                                handleDelete={(idValue) => deleteData(idValue)}
-                                changeTotal={changeTotal}
-                                setChangeTotal={setChangeTotal}
-                            />
-                        )
-                    })
+                    cartItems.length === 0 ? (
+                        <span>Cart masih kosong</span>
+                    ) : (
+                        cartItems.map((item) => {
+                            return (
+                                <ItemCard 
+                                    item={item}
+                                    handleDelete={(idValue) => deleteData(idValue)}
+                                    changeTotal={changeTotal}
+                                    setChangeTotal={setChangeTotal}
+                                />
+                            )
+                        })
+                    )
                 )
             }
         </div>

@@ -1,6 +1,5 @@
 import React , {useEffect, useState} from 'react'
 import styled from "styled-components";
-import {useHistory , useParams} from "react-router-dom";
 
 const Navbar = () => {
     const Container = styled.div`
@@ -19,17 +18,18 @@ const Navbar = () => {
         font-size: 14px;
     `
 
-    const history = useHistory();
-    const [dataUser , setDataUser] = useState(null);
+    const [username , setUsername] = useState(null);
     const [loading , setLoading] = useState(true);
 
     useEffect(() => {
-            setDataUser(JSON.parse(localStorage.getItem("dataUser")))
+            setUsername(JSON.parse(localStorage.getItem("userName")))
             setLoading(false);
     }, [])
 
     const logout = () => {
         localStorage.setItem("isLogged" , false);
+        localStorage.removeItem("idUser");
+        localStorage.removeItem("userName");
         window.location.href = '/';
     }
 
@@ -56,7 +56,9 @@ const Navbar = () => {
                                     </svg>
                                 </a>
 
-                                <span onClick={logout} style={{color: '#fff', cursor: 'pointer'}}><h4>{dataUser.username}</h4></span>
+                                <a href="/orders" style={{color: '#fff', cursor: 'pointer' , textDecoration: 'none'}}>Orders</a>
+                                
+                                <span onClick={logout} style={{color: '#fff', cursor: 'pointer'}}><h4>{username}</h4></span>
                             </div>
                             
                         ) : (
@@ -74,9 +76,11 @@ const Navbar = () => {
 
 const styles = {
     account : {
-        width: '150px',
+        width: '200px',
         display: 'flex',
         justifyContent: 'space-evenly',
+        // border: '2px solid red',
+        alignItems: 'center'
     }
 }
 

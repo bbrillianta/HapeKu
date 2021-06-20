@@ -50,11 +50,10 @@ const ItemCard = ({item , handleDelete , changeTotal , setChangeTotal}) => {
         axios.put('http://localhost:3001/user/cart/' , {
             itemId: itemId,
             product: productId,
-            checkout: false,
+            checkout: true,
             quantity: tambahan,
         })
         .then(response => {
-            localStorage.setItem("dataUser" , JSON.stringify(response.data))
             setQuantity(tambahan)
             if (changeTotal) {
                 setChangeTotal(false)
@@ -70,11 +69,10 @@ const ItemCard = ({item , handleDelete , changeTotal , setChangeTotal}) => {
             axios.put('http://localhost:3001/user/cart/' , {
                 itemId: itemId,
                 product: productId,
-                checkout: false,
+                checkout: true,
                 quantity: kurangan,
             })
             .then(response => {
-                localStorage.setItem("dataUser" , JSON.stringify(response.data))
                 setQuantity(kurangan)
                 if (changeTotal) {
                     setChangeTotal(false)

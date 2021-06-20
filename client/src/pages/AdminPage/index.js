@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import styled from "styled-components"
 import axios from "axios"
 import ProductCards from './components/ProductCards';
 
 const AdminPage = () => {
-    const Container = styled.div`
-        width: 80%;
-        margin: auto;
-        text-align: center;
-        box-sizing: border-box;
-    `;
-
-    const Anchor = styled.a`
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 14px;
-    `
     const thumbnail = React.createRef();
     const images = React.createRef();
     const [inputs, setInputs] = useState({});

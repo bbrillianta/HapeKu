@@ -89,10 +89,10 @@ const DetailProduct = () => {
 
   const addCart = (id) => {
     let isLogged = JSON.parse(localStorage.getItem("isLogged"))
-    let userId = JSON.parse(localStorage.getItem("dataUser"))
+    let idUser = JSON.parse(localStorage.getItem("idUser"))
     if (isLogged == true) {
       axios.post('http://localhost:3001/user/cart/', {
-        userId: userId._id,
+        userId: idUser,
         productId: id,
         quantity: 1
       })
@@ -102,7 +102,6 @@ const DetailProduct = () => {
           title: 'Berhasil',
           text: 'Berhasil menambah item ke cart'
         })
-        localStorage.setItem("dataUser" , JSON.stringify(response.data))
       })
       .catch(() => {
         Swal.fire({
