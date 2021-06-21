@@ -5,7 +5,7 @@ import swal from "sweetalert2";
 
 const Unpaid = () => {
     const Button = styled.button`
-        background: palevioletred;
+        background: ${(props) => props.primary ? 'palevioletred' : '#ff3c2e'};
         color: #fff;
         font-size: 1em;
         padding: 0.25em 1em;
@@ -68,6 +68,36 @@ const Unpaid = () => {
         });
     }
 
+    const deleteOrder = (userId , unpaidId) => {
+        swal.fire({
+            title: 'Are you sure?',
+            text: "Yakin ingin menghapus orderan ini ? ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!' 
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:3001/user/payment/unpaid` , {
+                    data: {
+                        userId: userId,
+                        unpaidItemId: unpaidId
+                    }
+                })
+                .then((response) => {
+                    swal.fire(
+                        'Deleted!',
+                        'Berhasil menghapus orderan.',
+                        'success'
+                    )
+                    window.location.href = '/orders'
+                })
+            }
+        })
+    }
+
     return (
         <div>
             {
@@ -85,7 +115,10 @@ const Unpaid = () => {
                                 <div style={styles.containerCard}>
                                     <div style={styles.title}>
                                         <h4>Pesanan : <span style={{color: 'palevioletred'}}>{data._id}</span></h4>
-                                        <h5 style={{color: 'palevioletred'}}>Belum Dibayar</h5>
+                                        <div style={{width: '200px' , display: 'flex' , justifyContent: 'space-between' , alignItems: 'center'}}>
+                                            <h5 style={{color: 'palevioletred'}}>Belum Dibayar</h5>
+                                            <Button onClick={() => deleteOrder(idUser, data._id)}>Hapus</Button>
+                                        </div>
                                     </div>
     
                                     {
@@ -109,7 +142,7 @@ const Unpaid = () => {
                                             <label>Upload bukti pembayaran : </label> <br />
                                             <form onSubmit={(event) => payOrder(event, data._id)} encType="multipart/form-data">
                                                 <input type="file" onChange={(e) => {setFotoBukti(e.target.files[0])}} />
-                                                <Button type="submit">Submit</Button>
+                                                <Button primary type="submit">Submit</Button>
                                             </form>
                                         </div>
                                         <h4>Total : <span style={{color: 'palevioletred'}}>{convertToRupiah(total)}</span></h4>
