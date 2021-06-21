@@ -12,6 +12,7 @@ const Login = () => {
         e.preventDefault();
 
         if (email === "admin@gmail.com" && password === "admin") {
+            localStorage.setItem("admin" , true)
             window.location.href = "/adminpage"
         }
 

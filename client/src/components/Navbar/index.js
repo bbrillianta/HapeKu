@@ -31,9 +31,10 @@ const Navbar = () => {
     };
 
     const logout = () => {
-        localStorage.setItem("isLogged" , false);
+        localStorage.removeItem("isLogged");
         localStorage.removeItem("idUser");
         localStorage.removeItem("userName");
+        localStorage.removeItem("admin")
         window.location.href = '/';
     }
 
@@ -48,7 +49,7 @@ const Navbar = () => {
             </a>
 
             {
-                localStorage.getItem("isLogged") === "false" ? (
+                localStorage.key("isLogged") === null ? (
                     <ul className='nav-menu'>
                         <li className='nav-item'>
                             <a
@@ -69,48 +70,78 @@ const Navbar = () => {
                         </li>
                     </ul>
                 ) : (
-                    <ul className='nav-menu'>
-                        <li
-                            className='nav-item'
-                            onMouseEnter={onMouseEnter}
-                            onMouseLeave={onMouseLeave}
-                        >
-                            <a
-                                className='nav-links'
+                    localStorage.getItem("admin") === "true" ? (
+                        <ul className='nav-menu'>
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links'
+                                    href="/adminpage"
+                                >
+                                    CRUD Product
+                                </a>
+                            </li>
+                            
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links'
+                                    href="/verifikasi"
+                                >
+                                    Verifikasi
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links highlight'
+                                    onClick={logout}
+                                >
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    ) : (
+                        <ul className='nav-menu'>
+                            <li
+                                className='nav-item'
+                                onMouseEnter={onMouseEnter}
+                                onMouseLeave={onMouseLeave}
                             >
-                                <i className="fa fa-bell-o"></i> &nbsp;
-                                <i className="fa fa-caret-down"></i>
-                            </a>
-                            {dropdown && <Dropdown />}
-                        </li>
+                                <a
+                                    className='nav-links'
+                                >
+                                    <i className="fa fa-bell-o"></i> &nbsp;
+                                    <i className="fa fa-caret-down"></i>
+                                </a>
+                                {dropdown && <Dropdown />}
+                            </li>
 
-                        <li className='nav-item'>
-                            <a
-                                className='nav-links'
-                                href="/cart"
-                            >
-                                <i className="fa fa-cart-plus"></i>
-                            </a>
-                        </li>
-                        
-                        <li className='nav-item'>
-                            <a
-                                className='nav-links'
-                                href="/orders"
-                            >
-                                Orders
-                            </a>
-                        </li>
-                        <li className='nav-item'>
-                            <a
-                                className='nav-links highlight'
-                                onClick={logout}
-                                style={{cursor: 'pointer'}}
-                            >
-                                {localStorage.getItem("userName")}
-                            </a>
-                        </li>
-                    </ul>
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links'
+                                    href="/cart"
+                                >
+                                    <i className="fa fa-cart-plus"></i>
+                                </a>
+                            </li>
+                            
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links'
+                                    href="/orders"
+                                >
+                                    Orders
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a
+                                    className='nav-links highlight'
+                                    onClick={logout}
+                                    style={{cursor: 'pointer'}}
+                                >
+                                    {localStorage.getItem("userName")}
+                                </a>
+                            </li>
+                        </ul>
+                    )
                 )
             }
         </nav>

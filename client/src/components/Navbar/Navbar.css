@@ -13,7 +13,7 @@
     margin-left: 20px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .fa-firstdraft {
@@ -41,7 +41,7 @@
   .nav-links {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .highlight {

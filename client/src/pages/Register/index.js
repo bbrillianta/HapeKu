@@ -20,8 +20,9 @@ const Register = () => {
             })
             .then((user) => {
                 if (user.status === 200) {
-                    localStorage.setItem('idUser' , JSON.stringify(user._id));
+                    localStorage.setItem("idUser" , JSON.stringify(user.data._id))
                     localStorage.setItem("isLogged" , true);
+                    localStorage.setItem("userName" , user.data.username);
                     window.location.href = '/';
                 }
             })
