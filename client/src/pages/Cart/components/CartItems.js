@@ -56,7 +56,7 @@ const CartItems = ({changeTotal , setTriggerCartUpdt, setChangeTotal}) => {
                     <span>Loading ...</span>
                 ) : (
                     cartItems.length === 0 ? (
-                        <span>Cart masih kosong</span>
+                        <span>Keranjang masih kosong</span>
                     ) : (
                         cartItems.map((item) => {
                             return (

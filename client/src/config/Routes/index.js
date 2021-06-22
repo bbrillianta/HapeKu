@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Routes = ({setTriggerCartUpdt}) => {
     const Container = styled.div`
-        width: 80%;
+        max-width: 80%;
         margin: auto;
         text-align: center;
         box-sizing: border-box;

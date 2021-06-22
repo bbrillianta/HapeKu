@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import Dropdown from './Dropdown';
 import 'font-awesome/css/font-awesome.min.css';
-import axios from "axios";
+import swal from "sweetalert2";
 
 const Navbar = ({userCart}) => {
     const [dropdown, setDropdown] = useState(false);
@@ -39,16 +39,29 @@ const Navbar = ({userCart}) => {
     };
 
     const logout = () => {
-        localStorage.removeItem("isLogged");
-        localStorage.removeItem("idUser");
-        localStorage.removeItem("userName");
-        localStorage.removeItem("admin")
-        window.location.href = '/';
+        swal.fire({
+            title: 'Are you sure?',
+            text: "Yakin ingin logout ? ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes' 
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("isLogged");
+                localStorage.removeItem("idUser");
+                localStorage.removeItem("userName");
+                localStorage.removeItem("admin")
+                window.location.href = '/';
+            }
+        })
     }
 
     return (
         <>
-        <nav className='navbar'>
+        <nav className='navbarr'>
             <a 
                 className='navbar-logo'
                 href="/"
@@ -138,7 +151,7 @@ const Navbar = ({userCart}) => {
                                     className='nav-links'
                                     href="/orders"
                                 >
-                                    Orders
+                                    Pesanan
                                 </a>
                             </li>
                             <li className='nav-item'>

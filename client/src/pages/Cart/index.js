@@ -23,7 +23,7 @@ const Cart = ({ setTriggerCartUpdt }) => {
 
     return (
         <div>
-            <h1 style={{margin: '30px 0px 30px 0px'}}>Cart</h1>
+            <h1 style={{margin: '30px 0px 30px 0px'}}>Keranjang</h1>
             <div style={styles.cardArea}>
                 <div style={styles.cardProductArea}>
                     <CartItems changeTotal={gantiTotal} setTriggerCartUpdt={setTriggerCartUpdt} setChangeTotal={setGantiTotal}/>

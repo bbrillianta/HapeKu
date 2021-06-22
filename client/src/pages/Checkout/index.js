@@ -74,7 +74,7 @@ const Checkout = ({ setTriggerCartUpdt }) => {
         <div>
             <h1 style={{margin: '30px 0px 30px 0px'}}>Checkout</h1>
             <div style={styles.containerCard}>
-                <h3 style={{textAlign: 'left'}}>Shipping Address</h3>
+                <h3 style={{textAlign: 'left'}}>Alamat Pengiriman</h3>
                 <textarea 
                     placeholder="Masukkan alamat anda" 
                     style={styles.textareaAddress}
@@ -82,7 +82,7 @@ const Checkout = ({ setTriggerCartUpdt }) => {
                 ></textarea>
             </div>
             <div style={styles.containerCard}>
-                <h3 style={{textAlign: 'left'}}>Ordered Product</h3>
+                <h3 style={{textAlign: 'left'}}>Produk yang dipesan</h3>
 
                 {
                     loading ? (
@@ -106,7 +106,7 @@ const Checkout = ({ setTriggerCartUpdt }) => {
                 <br />
                 <h3>Total : {convertToRupiah(total)}</h3>
             </div>
-            <Button onClick={makeOrder}>Make An Order</Button>
+            <Button onClick={makeOrder}>Buat Pesanan</Button>
         </div>
     )
 }

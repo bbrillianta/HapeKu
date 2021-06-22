@@ -142,7 +142,7 @@ const Unpaid = () => {
                                             <label>Upload bukti pembayaran : </label> <br />
                                             <form onSubmit={(event) => payOrder(event, data._id)} encType="multipart/form-data">
                                                 <input type="file" onChange={(e) => {setFotoBukti(e.target.files[0])}} />
-                                                <Button primary type="submit">Submit</Button>
+                                                <Button primary type="submit">Simpan</Button>
                                             </form>
                                         </div>
                                         <h4>Total : <span style={{color: 'palevioletred'}}>{convertToRupiah(total)}</span></h4>

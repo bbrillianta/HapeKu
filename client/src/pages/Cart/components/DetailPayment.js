@@ -45,7 +45,7 @@ const DetailPayment = ({total}) => {
     return (
         <div>
             <CardPayment>
-                <h3>Summary</h3>
+                <h3>Ringkasan</h3>
                 <hr />
                 <br />
                 <Product>
@@ -59,7 +59,7 @@ const DetailPayment = ({total}) => {
                     } 
                 </Product>
             </CardPayment>
-            <Button onClick={() => history.push("/checkout")}>Go to Checkout</Button> 
+            <Button onClick={() => history.push("/checkout")}>Buat Pesanan</Button> 
         </div>
     )
 }

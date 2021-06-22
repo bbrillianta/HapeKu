@@ -32,7 +32,7 @@ const Product = () => {
             <h1 style={{
                 margin: '50px 0px 50px 0px',
                 boxSizing: 'border-box'
-            }}>Katalog Product</h1>
+            }}>Katalog Produk</h1>
 
             <CardWrapper>
                 {

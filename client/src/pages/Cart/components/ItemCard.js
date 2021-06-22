@@ -93,7 +93,6 @@ const ItemCard = ({item , handleDelete , changeTotal , setChangeTotal}) => {
                     />
                     <DeskripsiProduct>
                         <h4>{item.product.name}</h4>
-                        <p>5 gram</p>
                         <h5 style={{color: 'salmon'}}>
                             {convertToRupiah(item.product.price)}
                         </h5>

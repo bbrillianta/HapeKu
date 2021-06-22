@@ -19,16 +19,16 @@ const Orders = () => {
             <Router>
                 <div style={styles.navOrders}>
                     <Link to={`${url}/unpaid`} style={{textDecoration: 'none' , color: '#000'}}>
-                        <h2>Unpaid Transaction</h2>
+                        <h2>Pesanan Belum Dibayar</h2>
                     </Link>
                     <Link to={`${url}/paid`} style={{textDecoration: 'none' , color: '#000'}}>
-                        <h2>Paid Transaction</h2>
+                        <h2>Pesanan Sudah Dibayar</h2>
                     </Link>
                 </div>
                 <div className="content" style={styles.content}>
                     <Switch>
                         <Route exact path={path}>
-                            <h3>Please Choose Navigation.</h3>
+                            <h3>Silahkan pilih tab ...</h3>
                         </Route>
                         <Route path={`${path}/:choose`}>
                             <Content />

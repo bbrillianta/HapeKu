@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Banner from "./Banner.jpg"
+import Banner from "./banner-iphone.jpg"
 import axios from "axios";
 import {useHistory} from "react-router-dom"
 import CardProduct from '../../components/CardProduct';
@@ -8,12 +8,10 @@ import CardProduct from '../../components/CardProduct';
 const Home = () => {
     const Jumbotron = styled.div`
         width: 100%;
-        height: 70vh;
+        height: 80vh;
         box-sizing: border-box;
         overflow: hidden;
-        background-image: url(${Banner});
-        background-size: cover;
-        background-position: center;
+        display: flex;
     `
 
     const Container = styled.div`
@@ -76,10 +74,15 @@ const Home = () => {
 
     return (
         <div>
-            <Jumbotron />
             <Container>
+                <Jumbotron>
+                    <div style={styles.tulisan}>
+                        <h3 style={{lineHeight: '2'}}>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h3>
+                    </div>
+                    <div style={styles.gambar}></div>
+                </Jumbotron>
                 <div className="produk" style={{marginTop: '50px'}}>
-                    <h1>Product</h1>
+                    <h1>Produk</h1>
                     <div className="productCard">
                         <CardWrapper>
                             {
@@ -88,13 +91,32 @@ const Home = () => {
                                 ))
                             }
                         </CardWrapper>
-                        <h3 style={{cursor: 'pointer'}} onClick={() => history.push('/products')}>See More ...</h3>
+                        <h3 style={{cursor: 'pointer'}} onClick={() => history.push('/products')}>Lihat lebih banyak ...</h3>
                     </div>
                 </div>
             </Container>
             <Footer>Copyright Informatics Engineering</Footer>
         </div>
     )
+}
+
+const styles = {
+    tulisan: {
+        width: '50%',
+        textAlign: 'left',
+        display: 'flex',
+        padding: '0px 30px',
+        boxSizing: 'border-box',
+        alignItems: 'center'
+    }, 
+
+    gambar: {
+        width: '50%',
+        backgroundImage: `url(${Banner})`,
+        // border: '2px solid blue',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    }
 }
 
 export default Home
