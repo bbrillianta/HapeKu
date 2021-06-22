@@ -73,36 +73,40 @@ const Verifikasi = () => {
     return (
         <div className="container" >
             <div className="content-area">
-              <h2 style={{ textAlign: 'center' }}> Rincian Verifikasi Transaksi </h2>
+              <h2 style={{}}> Rincian Verifikasi Transaksi </h2>
                 {
-                    transactions.map((transaction) => {
-                        return(
-                        <div className="card">
-                            <img className="img-card" src={`http://localhost:3001/${transaction.payment.confirmation.path}`} alt="" />
-                            <div className="card-body">
-                                <p >{transaction.created_at}</p>
-                                <p> {transaction.user.username} </p>
-                                <p> {transaction.address} </p>
-                                <br />
-                                <p style={{opacity:'70%'}}> {getTotalTransaction(transaction.products)}</p>
-                                <p style={{opacity:'70%'}}> { 
-                                    transaction.products.map((product) => { return product.product.name + ' x' + product.quantity + ', ' })
-                                } </p>
+                    transactions.length === 0 ? (
+                        <span style={{margin: '50px auto'}}>Belum ada pembayaran yang siap diverifikasi</span>
+                    ) : (
+                        transactions.map((transaction) => {
+                            return(
+                            <div className="card">
+                                <img className="img-card" src={`http://localhost:3001/${transaction.payment.confirmation.path}`} alt="" />
+                                <div className="card-body">
+                                    <p >{transaction.created_at}</p>
+                                    <p> {transaction.user.username} </p>
+                                    <p> {transaction.address} </p>
+                                    <br />
+                                    <p style={{opacity:'70%'}}> {getTotalTransaction(transaction.products)}</p>
+                                    <p style={{opacity:'70%'}}> { 
+                                        transaction.products.map((product) => { return product.product.name + ' x' + product.quantity + ', ' })
+                                    } </p>
+                                </div>
+                                <div className="card-opsi">
+                                    <OpsiButton className="opsi" 
+                                    onClick={(e) => { 
+                                        e.preventDefault();
+                                        unverify(transaction.user._id, transaction._id); 
+                                    }}>❌</OpsiButton>
+                                    <OpsiButton className="opsi" onClick={(e) => { 
+                                        e.preventDefault();
+                                        verify(transaction.user._id, transaction._id); 
+                                    }}>✔</OpsiButton>
+                                </div>
                             </div>
-                            <div className="card-opsi">
-                                <OpsiButton className="opsi" 
-                                onClick={(e) => { 
-                                    e.preventDefault();
-                                    unverify(transaction.user._id, transaction._id); 
-                                }}>❌</OpsiButton>
-                                <OpsiButton className="opsi" onClick={(e) => { 
-                                    e.preventDefault();
-                                    verify(transaction.user._id, transaction._id); 
-                                }}>✔</OpsiButton>
-                            </div>
-                        </div>
-                        );
-                    })
+                            );
+                        })
+                    )
                 }  
             </div>
         </div>
