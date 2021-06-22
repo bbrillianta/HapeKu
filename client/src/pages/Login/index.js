@@ -13,7 +13,8 @@ const Login = () => {
 
         if (email === "admin@gmail.com" && password === "admin") {
             localStorage.setItem("admin" , true)
-            window.location.href = "/adminpage"
+            localStorage.setItem("isLogged" , true);
+            return window.location.href = "/adminpage";
         }
 
         axios.post('http://localhost:3001/auth/login' , {
