@@ -3,7 +3,7 @@ import DetailPayment from './components/DetailPayment';
 import CartItems from './components/CartItems';
 import axios from 'axios';
 
-const Cart = () => {
+const Cart = ({ setTriggerCartUpdt }) => {
     const [total , setTotal] = useState(null);
     const [gantiTotal , setGantiTotal] = useState(true)
     
@@ -26,7 +26,7 @@ const Cart = () => {
             <h1 style={{margin: '30px 0px 30px 0px'}}>Cart</h1>
             <div style={styles.cardArea}>
                 <div style={styles.cardProductArea}>
-                    <CartItems changeTotal={gantiTotal} setChangeTotal={setGantiTotal}/>
+                    <CartItems changeTotal={gantiTotal} setTriggerCartUpdt={setTriggerCartUpdt} setChangeTotal={setGantiTotal}/>
                 </div>
                 <div style={styles.detailPaymentArea}>
                     <DetailPayment total={total}/>

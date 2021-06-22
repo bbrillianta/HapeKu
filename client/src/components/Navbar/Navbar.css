@@ -68,6 +68,20 @@
     display: none;
   }
   
+  .notif, .cart {
+    position: relative;
+  }
+
+  .counter {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background-color: palevioletred;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 3px;
+  }
+
   @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;

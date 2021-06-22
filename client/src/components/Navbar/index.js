@@ -4,14 +4,22 @@ import Dropdown from './Dropdown';
 import 'font-awesome/css/font-awesome.min.css';
 import axios from "axios";
 
-const Navbar = () => {
+const Navbar = ({userCart}) => {
     const [dropdown, setDropdown] = useState(false);
+    const [menuItems, setMenuItems] = useState([]);
+
+    useEffect(() => {
+        const userId = JSON.parse(localStorage.getItem("idUser"));
+        fetch(`http://localhost:3001/user/notifications?userId=${userId}`)
+        .then(res => res.json())
+        .then(data => setMenuItems(data));
+    }, []);
 
     const [data , setData] = useState([]);
     const [loading , setLoading] = useState(true);
     
     useEffect(() => {
-
+        
     })
 
     const onMouseEnter = () => {
@@ -49,7 +57,7 @@ const Navbar = () => {
             </a>
 
             {
-                localStorage.key("isLogged") === null ? (
+                localStorage.getItem("isLogged") === null ? (
                     <ul className='nav-menu'>
                         <li className='nav-item'>
                             <a
@@ -106,20 +114,22 @@ const Navbar = () => {
                                 onMouseLeave={onMouseLeave}
                             >
                                 <a
-                                    className='nav-links'
+                                    className='nav-links notif'
                                 >
                                     <i className="fa fa-bell-o"></i> &nbsp;
                                     <i className="fa fa-caret-down"></i>
+                                    <div className="counter">{menuItems.length}</div>
                                 </a>
-                                {dropdown && <Dropdown />}
+                                {dropdown && <Dropdown menuItems={menuItems} />}
                             </li>
 
                             <li className='nav-item'>
                                 <a
-                                    className='nav-links'
+                                    className='nav-links cart'
                                     href="/cart"
                                 >
                                     <i className="fa fa-cart-plus"></i>
+                                    <div className="counter">{ userCart.length }</div>
                                 </a>
                             </li>
                             

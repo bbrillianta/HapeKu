@@ -24,6 +24,7 @@ const Login = () => {
             if (user.status === 200) {
                 localStorage.setItem("idUser" , JSON.stringify(user.data._id))
                 localStorage.setItem("userName" , user.data.username)
+                localStorage.setItem("userCart" , JSON.stringify(user.data.cartItems))
                 localStorage.setItem("isLogged" , true);
                 window.location.href = '/';
             } 

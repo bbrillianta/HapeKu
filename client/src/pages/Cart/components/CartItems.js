@@ -3,7 +3,7 @@ import axios from "axios";
 import ItemCard from "./ItemCard";
 import swal from "sweetalert2";
 
-const CartItems = ({changeTotal , setChangeTotal}) => {
+const CartItems = ({changeTotal , setTriggerCartUpdt, setChangeTotal}) => {
     const [cartItems , setCartItems] = useState([]);
     const [loading , setLoading] = useState(true);
 
@@ -33,7 +33,10 @@ const CartItems = ({changeTotal , setChangeTotal}) => {
                 title: 'Berhasil',
                 text: 'Product berhasil dihapus dari cart'
             })
-            setCartItems(response.data.cartItems)
+            setCartItems(response.data.cartItems);
+            localStorage.setItem('userCart', JSON.stringify(response.data.cartItems));
+            setTriggerCartUpdt(true);
+            setTriggerCartUpdt(false);
             setLoading(false);
             if (changeTotal) {
                 setChangeTotal(false)

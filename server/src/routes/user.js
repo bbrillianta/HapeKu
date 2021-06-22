@@ -6,14 +6,18 @@ const Transaction = require('../models/Transaction');
 const CartService = require('../services/CartService');
 const PaymentService = require('../services/PaymentService');
 const UserController = require('../controllers/UserController');
+const NotificationService = require('../services/NotificationService');
 
 const router = express.Router();
 const cartService = new CartService(User);
 const paymentService = new PaymentService(User, Transaction);
-const userController = new UserController(cartService, paymentService);
+const notificationService = new NotificationService(User);
+const userController = new UserController(cartService, paymentService, notificationService);
 
 module.exports = (app) => {
     app.use('/user', router);
+
+    
 
     router.route('/cart')
         .get(async (req, res, next) => await userController.indexCartItem(req, res, next))
@@ -35,5 +39,8 @@ module.exports = (app) => {
             upload.single('verificationImage'),
             async (req, res, next) => await userController.createTransaction(req, res, next)
         )
+    
+    router.route('/notifications')
+        .get(async (req, res, next) => await userController.indexNotifications(req, res, next));
 
 }

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
 import Swal from 'sweetalert2';
 
-const DetailProduct = () => {
+const DetailProduct = ({setTriggerCartUpdt}) => {
 
   const history = useHistory();
 
@@ -101,7 +101,10 @@ const DetailProduct = () => {
           icon: 'success',
           title: 'Berhasil',
           text: 'Berhasil menambah item ke cart'
-        })
+        });
+        localStorage.setItem('userCart', JSON.stringify(response.data.cartItems));
+        setTriggerCartUpdt(true);
+        setTriggerCartUpdt(false);
       })
       .catch(() => {
         Swal.fire({

@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Register , AdminPage , Home , Product , DetailProduct , Cart, Login , Verifikasi , Checkout , Orders} from "../../pages";
 import styled from "styled-components";
 
-const Routes = () => {
+const Routes = ({setTriggerCartUpdt}) => {
     const Container = styled.div`
         width: 80%;
         margin: auto;
@@ -19,17 +19,17 @@ const Routes = () => {
                 </Route>
                 <Route exact path="/products">
                     <Container>
-                        <Product />
+                        <Product/>
                     </Container>
                 </Route>
                 <Route exact path="/detail-product/:param">
                     <Container>
-                        <DetailProduct />
+                        <DetailProduct setTriggerCartUpdt={setTriggerCartUpdt}/>
                     </Container>
                 </Route>
                 <Route exact path="/cart">
                     <Container>
-                        <Cart />
+                        <Cart setTriggerCartUpdt={setTriggerCartUpdt} />
                     </Container>
                 </Route>
                 <Route exact path="/adminpage">
@@ -46,7 +46,7 @@ const Routes = () => {
                 </Route>
                 <Route exact path="/checkout">
                     <Container>
-                        <Checkout />
+                        <Checkout setTriggerCartUpdt={setTriggerCartUpdt}/>
                     </Container>
                 </Route>
                 <Route exact path="/orders">

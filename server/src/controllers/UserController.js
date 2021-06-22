@@ -1,10 +1,12 @@
 module.exports = class UserController {
     #cartService;
     #paymentService;
+    #notificationService;
 
-    constructor(cartService, paymentService) {
+    constructor(cartService, paymentService, notificationService) {
         this.#cartService = cartService;
         this.#paymentService = paymentService;
+        this.#notificationService = notificationService;
     }
 
     async createCartItem(req, res, next) {
@@ -65,5 +67,11 @@ module.exports = class UserController {
         const userTransactions = await this.#paymentService.getAllPaid(req.query);
 
         res.json(userTransactions);
+    }
+
+    async indexNotifications(req, res, next) {
+        const userNotifications = await this.#notificationService.getAllNotification(req.query);
+
+        res.json(userNotifications);
     }
 }

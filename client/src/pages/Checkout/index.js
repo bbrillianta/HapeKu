@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import swal from "sweetalert2"
 
-const Checkout = () => {
+const Checkout = ({ setTriggerCartUpdt }) => {
     const Button = styled.button`
         background: palevioletred;
         color: #fff;
@@ -56,6 +56,9 @@ const Checkout = () => {
             })
             .then((response) => {
                 window.location.href = '/orders';
+                localStorage.setItem('userCart', JSON.stringify(response.data.cartItems));
+                setTriggerCartUpdt(true);
+                setTriggerCartUpdt(false);
             })
             .catch((error) => console.log(error))
         } else {
