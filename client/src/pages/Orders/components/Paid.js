@@ -67,7 +67,16 @@ const Paid = () => {
                                         })
                                     }
                                     <div style={{display: 'flex' , justifyContent: 'space-between' , marginTop: '20px'}}>
-                                        <h4 style={{color: 'palevioletred'}}>Sudah dibayar</h4>
+                                        <div style={{display: 'flex'}}>
+                                            <h4 style={{color: 'palevioletred'}}>Sudah dibayar</h4>
+                                            {
+                                                data.payment.verified 
+                                                ?
+                                                    <h4 style={{color: 'green', marginLeft: '10px'}}>(Sudah diverifikasi)</h4>
+                                                : 
+                                                    <h4 style={{color: 'red', marginLeft: '10px'}}>(Belum diverifikasi)</h4>
+                                            }
+                                        </div>
                                         <h4>Total : <span style={{color: 'palevioletred'}}>{convertToRupiah(total)}</span></h4>
                                     </div>
                                 </div>                            

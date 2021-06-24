@@ -3,10 +3,11 @@ const express = require('express');
 const AdminController = require('../controllers/AdminController');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
+const Product = require('../models/Product');
 const AdminService = require('../services/AdminService');
 
 const router = express.Router();
-const adminService = new AdminService(User, Transaction);
+const adminService = new AdminService(User, Transaction, Product);
 const adminController = new AdminController(adminService);
 
 module.exports = (app) => {

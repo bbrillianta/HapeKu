@@ -1,10 +1,12 @@
 module.exports = class AdminService {
     #User;
     #Transaction;
+    #Product;
 
-    constructor(User, Transaction) {
+    constructor(User, Transaction, Product) {
         this.#User = User;
         this.#Transaction = Transaction;
+        this.#Product = Product;
     }
 
     async getAllTransactions() {
@@ -21,6 +23,10 @@ module.exports = class AdminService {
             { 'payment.verified': true },
             { new: true }
         );
+        
+        updatedTransaction.products.forEach(product => {
+            this.#Product.updateOne({ _id: product.product }, { $inc: { quantity: -product.quantity }}, (err, result) => {});
+        });
         
         const notification = `Pesanan ${updatedTransaction._id} telah diverifikasi dan siap untuk diantar`;
 
